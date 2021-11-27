@@ -1,0 +1,3 @@
+const GOOGLE_API_KEY = "AIzaSyA56Rt5OdCu78UgPfSR19CYtkqQ9Ie37eU"
+
+export default GOOGLE_API_KEY
