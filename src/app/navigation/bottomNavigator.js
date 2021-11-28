@@ -1,12 +1,30 @@
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import * as React from 'react';
+import { BottomNavigation } from 'react-native-paper';
+import { ChatScreen, HomeScreen, SettingsScreen } from '../screens';
+const BottomNavigator = () => {
+	const [index, setIndex] = React.useState(0);
+	const [routes] = React.useState([
+		{ key: 'HomeScreen', title: 'Home', icon: 'home', barColor: 'red' },
+		{ key: 'ChatScreen', title: 'Chat', icon: 'chat', barColor: 'green' },
+		{
+			key: 'SettingsScreen', title: 'Settings', icon: 'heart', barColor: 'gold'
+		},
+	]);
 
-const Tab = createMaterialBottomTabNavigator();
+	const renderScene = BottomNavigation.SceneMap({
+		HomeScreen,
+		ChatScreen,
+		SettingsScreen
+	});
 
-function MyTabs() {
 	return (
-		<Tab.Navigator>
-			<Tab.Screen name="Home" component={HomeScreen} />
-			<Tab.Screen name="Settings" component={SettingsScreen} />
-		</Tab.Navigator>
+		<BottomNavigation
+			navigationState={{ index, routes }}
+			onIndexChange={setIndex}
+			renderScene={renderScene}
+			barStyle={{ backgroundColor: routes[index].barColor }}
+		/>
 	);
-}
+};
+
+export default BottomNavigator;
